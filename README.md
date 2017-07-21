@@ -15,3 +15,7 @@
 
 - [Calendar](./php/Calendar)
 - [EventMessage](./php/EventMessage)
+
+### Layout
+
+- [Simple landing](./layout/simple-landing)
