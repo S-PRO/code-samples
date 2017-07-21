@@ -1,0 +1,188 @@
+@import "./config/config.scss";
+@import "./config/colors.scss";
+
+.vir-color-palette {
+  .modal-dialog {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+
+    .modal-content {
+      position: absolute;
+      min-height: 100%;
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+      background: #F0F6F6;
+
+      .modal-header {
+        height: $header-height;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: none;
+        border-bottom: 0;
+        background: #f0f5f5;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+        @include vir-320 {
+          height: $header-height-small;
+        }
+        @include vir-tablets-plus {
+          height: $header-height-large;
+        }
+
+        i.vir-back {
+          cursor: pointer;
+          text-align: center;
+          font-size: 22px;
+          font-weight: 700;
+          flex: 0 0 50px;
+          color: #96B5B5;
+          @include hover($t-color: #96B5B5);
+          @include mq($min-width: $w-iphone6Plus) {
+            font-size: 30px;
+          }
+        }
+
+        span {
+          font-size: 15px;
+          font-weight: 500;
+          color: #3e5b5b;
+          text-align: center;
+          flex: 1;
+          margin-right: 50px;
+          @include mq($min-width: $w-iphone6Plus) {
+            font-size: 18px;
+          }
+        }
+      }
+
+      .modal-body {
+        width: 100%;
+        padding: 0;
+        /**
+          * 120 -> footer height
+          * #{$header-height} -> header height
+          * 50 -> tabs height
+          */
+        height: calc(100% - 60px - #{$header-height});
+        overflow: auto;
+        position: absolute;
+        @include vir-320 {
+          height: $header-height-small;
+          height: calc(100% - 60px - #{$header-height-small});
+        }
+        @include vir-tablets-plus {
+          height: calc(100% - 60px - #{$header-height-large});
+        }
+
+        .extracted-colors {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          padding: 10px;
+          box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+
+          .vir-color-item,
+          .vir-empty-color-item {
+            flex: 0 0 100%;
+            margin-bottom: 5px;
+            padding-right: 5px;
+            @include vir-tablets-plus {
+              flex: 0 0 50%;
+            }
+
+            .color {
+              width: 100px;
+            }
+          }
+        }
+
+        .sub-header {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          height: 45px;
+
+          span {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+          }
+        }
+      }
+
+      .modal-footer {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 0;
+        text-align: left;
+        border: none;
+        box-shadow: 0 0 1px 1px rgba(0,0,0,0.1);
+
+        .btn-wrapper {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 0 1px 1px rgba(0,0,0,0.1);
+          padding: 10px;
+
+          button {
+            position: relative;
+            display: block;
+            color: #95b5b5;
+            font-weight: 500;
+            border-radius: 3px;
+            border: 1px solid #95b5b5;
+            margin: 0;
+            text-align: center;
+            margin-right: 10px;
+
+            &:last-child {
+              margin: 0;
+            }
+            width: 120px;
+
+            &.btn-text {
+              font-size: 15px;
+              min-height: 35px;
+              background-color: #fff;
+              box-shadow: none;
+              @include vir-320 {
+                font-size: 12px;
+              }
+              @include mq($min-width: $w-iphone6Plus, $max-width: $w-desktop-min - 1) {
+                min-height: 45px;
+                font-size: 18px;
+              }
+              @include vir-desktop-plus {
+                font-size: 14px;
+              }
+              @include hover($t-color: #95b5b5, $border: #95b5b5);
+            }
+
+            &.active {
+              border: 1px solid #ff432f;
+              box-shadow: none;
+
+              &.btn-text {
+                background-color: #ff432f;
+                color: #fff;
+                @include hover($b-color: #ff432f, $border: #ff432f);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

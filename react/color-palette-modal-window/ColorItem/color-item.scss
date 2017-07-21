@@ -1,0 +1,122 @@
+@import "./../../../../config/config.scss";
+@import "./../../../../config/colors.scss";
+
+.vir-color-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .color-visibility {
+    flex: 0 0 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      font-size: 18px;
+      color: #95b5b5;
+      @include hover($t-color: #95b5b5);
+    }
+  }
+
+  .color-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    color: $text-color-light;
+
+    .color-input {
+      $color-item-size: 35px;
+      $color-item-size-large: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      @include hover($t-color: $text-color-light);
+
+      .color {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: $color-item-size;
+        height: $color-item-size;
+        border-radius: 3px;
+        z-index: 1;
+        box-shadow: inset 2px 2px 5px 0 rgba(0,0,0,0.15);
+        @include mq($min-width: $w-iphone6Plus) {
+          width: $color-item-size-large;
+          height: $color-item-size-large;
+        }
+
+        &.none {
+          background-color: transparent;
+          border: 1px solid #edf2f2;
+          border-top: none;
+          border-left: none;
+          border-bottom: none;
+
+          hr {
+            background: $active-color;
+            transform: rotate(136deg);
+            height: 1px;
+            width: 44px;
+            margin: 17px -5px;
+            @include mq($min-width: $w-iphone6Plus) {
+              width: 53px;
+              margin: 19px -6px;
+            }
+          }
+        }
+      }
+
+      i {
+        font-size: 20px;
+        font-weight: 600;
+        position: absolute;
+        right: 0;
+        width: $color-item-size;
+        height: $color-item-size;
+        line-height: $color-item-size;
+        text-align: center;
+        color: #ff5c3c;
+        z-index: 1;
+        @include mq($min-width: $w-iphone6Plus) {
+          width: $color-item-size-large;
+          height: $color-item-size-large;
+          line-height: $color-item-size-large;
+        }
+      }
+
+      .color-name {
+        width: 100%;
+        height: $color-item-size;
+        background-color: #fff;
+        border: 1px solid $text-color-light;
+        border-radius: 3px;
+        padding-left: $color-item-size;
+        @include hover($border: $text-color-light);
+        @include mq($min-width: $w-iphone6Plus) {
+          height: $color-item-size-large;
+          padding-left: $color-item-size-large;
+        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.active {
+          border-width: 4px;
+        }
+
+        span {
+          text-transform: uppercase;
+          font-size: 12px;
+          @include mq($min-width: $w-iphone6Plus) {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
