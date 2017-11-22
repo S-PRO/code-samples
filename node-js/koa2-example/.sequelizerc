@@ -1,0 +1,7 @@
+const config = require('./src/config/index');
+
+module.exports = Object.assign({}, config.db, {
+  config: __filename,
+  'migrations-path': './src/db/migrations/',
+  'models-path': './src/db/models/',
+});

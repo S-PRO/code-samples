@@ -6,10 +6,14 @@ import logger from 'koa-logger';
 import bodyParser from 'koa-bodyparser';
 import convert from 'koa-convert';
 
+import { CatchErrorMiddleware } from './middleware';
+
 const API_PORT = 8000;
 const app = new Koa();
 
-app.use(convert(cors({ origin: true })))
+app
+  .use(CatchErrorMiddleware)
+  .use(convert(cors({ origin: true })))
   .use(logger())
   .use(convert(bodyParser({ jsonLimit: '50mb' })));
 
