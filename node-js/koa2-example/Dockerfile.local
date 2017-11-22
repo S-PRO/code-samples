@@ -1,0 +1,9 @@
+FROM node:9.1
+
+WORKDIR /var/www/koa2-example
+ADD . /var/www/koa2-example
+
+RUN npm install
+EXPOSE 8000
+
+CMD ["node_modules/.bin/babel-watch", "src/index.js"]
