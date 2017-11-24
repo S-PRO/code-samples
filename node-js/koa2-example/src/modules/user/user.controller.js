@@ -13,10 +13,21 @@ export default class UserController {
     ctx.body = user;
   }
 
-  static async create(ctx, next) {
+  static async create(ctx) {
     const { first_name, last_name } = ctx.request.body;
     const user = await models.user.create({ first_name, last_name });
     ctx.body = user;
+  }
+
+  static async createUserTask(ctx) {
+    const { id: user_id } = ctx.params;
+    const { title, description } = ctx.request.body;
+    const user = await models.user.findById(user_id);
+    if (!user) throw Boom.notFound('Can\'t find user');
+
+    const task = await models.task.create({ title, description, user_id });
+    ctx.body = task;
+
   }
 
   static async update(ctx) {
@@ -34,7 +45,6 @@ export default class UserController {
     if (!user) throw Boom.notFound();
     await user.destroy();
     ctx.status = 204;
-
   }
 
 };

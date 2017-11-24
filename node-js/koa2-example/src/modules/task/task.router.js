@@ -8,4 +8,5 @@ const router = new Router({ prefix: '/api/task' });
 
 export default router
   .get('/', TaskController.fetchAll)
+  .get('/:id', TaskController.fetchOne)
   .routes();
