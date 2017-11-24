@@ -11,4 +11,5 @@ export default router
   .get('/:id', UserController.fetchOne)
   .post('/', validator(createSchema), UserController.create)
   .put('/:id', validator(updateSchema), UserController.update)
+  .delete('/:id', UserController.remove)
   .routes();

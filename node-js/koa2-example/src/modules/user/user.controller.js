@@ -29,4 +29,12 @@ export default class UserController {
     ctx.body = await user.update({ first_name, last_name });
   }
 
+  static async remove(ctx) {
+    const user = await models.user.findById(ctx.params.id);
+    if (!user) throw Boom.notFound();
+    await user.destroy();
+    ctx.status = 204;
+
+  }
+
 };
