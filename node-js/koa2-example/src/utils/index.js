@@ -1,1 +1,1 @@
-export { logger } from './Logger.js'
+export { logger } from './logger.js'
