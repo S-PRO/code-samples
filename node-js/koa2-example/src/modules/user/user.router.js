@@ -7,7 +7,8 @@ import { createSchema, updateSchema } from "./schemas";
 const router = new Router({ prefix: '/api/user' });
 
 export default router
-  .get('/forbidden', UserController.error)
+  .get('/', UserController.fetchAll)
+  .get('/:id', UserController.fetchOne)
   .post('/', validator(createSchema), UserController.create)
   .put('/:id', validator(updateSchema), UserController.update)
   .routes();
