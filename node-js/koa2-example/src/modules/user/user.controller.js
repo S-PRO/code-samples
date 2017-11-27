@@ -19,18 +19,6 @@ export default class UserController {
     ctx.body = user;
   }
 
-  static async createUserTask(ctx) {
-    const { id: user_id } = ctx.params;
-    const { title, description } = ctx.request.body;
-    const user = await models.user.findById(user_id);
-    if (!user) throw Boom.notFound('Can\'t find user');
-
-    const task = await models.task.create({ title, description });
-    const result = await user.setTasks(task);
-    ctx.body = task;
-
-  }
-
   static async update(ctx) {
     const { first_name, last_name } = ctx.request.body;
     const { id } = ctx.params;
