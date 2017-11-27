@@ -4,11 +4,14 @@ import { models } from './../../db';
 export default class UserController {
 
   static async fetchAll(ctx) {
-    ctx.body = await models.user.findAll();
+    ctx.body = await models.user.findAll({ include: [models.task] });
   }
 
   static async fetchOne(ctx) {
-    const user = await models.user.findById(ctx.params.id);
+    const user = await models.user.findOne({
+      where: { id: ctx.params.id },
+      include: [models.task]
+    });
     if (!user) throw Boom.notFound();
     ctx.body = user;
   }

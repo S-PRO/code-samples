@@ -4,12 +4,18 @@ import { models } from './../../db';
 export default class TaskController {
 
   static async fetchAll(ctx) {
-    ctx.body = await models.task.findAll({ where: { user_id: ctx.params.user_id } });
+    ctx.body = await models.task.findAll({
+      where: { user_id: ctx.params.user_id },
+      include: [models.user]
+    });
   }
 
   static async fetchOne(ctx) {
     const { id, user_id } = ctx.params;
-    const task = await models.task.findOne({ where: { id, user_id } });
+    const task = await models.task.findOne({
+      where: { id, user_id },
+      include: [models.user]
+    });
     if (!task) throw Boom.notFound();
     ctx.body = task;
   }
