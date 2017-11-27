@@ -20,7 +20,6 @@ export default class UserController {
   }
 
   static async createUserTask(ctx) {
-    throw Boom.badData();
     const { id: user_id } = ctx.params;
     const { title, description } = ctx.request.body;
     const user = await models.user.findById(user_id);
