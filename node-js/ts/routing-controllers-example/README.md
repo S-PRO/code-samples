@@ -1,3 +1,9 @@
-# ExpressJS using example
+# Routing Controllers using example
 
-### Currently under development
+### Technologies used:
+
+- [Routing Controllers](https://github.com/typestack/routing-controllers)
+- [ExpressJS](https://github.com/koajs/koa)
+- [MySQL](https://www.mysql.com/)
+- [TypeORM](https://github.com/typeorm/typeorm)
+- [Docker](https://www.docker.com/)
