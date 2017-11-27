@@ -7,10 +7,14 @@ import { User } from './../models';
 @Service()
 export class UserRepository {
 
-  @OrmRepository(User) 
+  @OrmRepository(User)
   private readonly repository: Repository<User>;
 
-  findAll() {
+  public findAll(): Promise<User[]> {
     return this.repository.find();
+  }
+
+  public findOne(id: number): Promise<User | undefined> {
+    return this.repository.findOneById(id);
   }
 }

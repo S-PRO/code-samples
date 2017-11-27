@@ -1,5 +1,6 @@
-import { JsonController, Get } from 'routing-controllers';
+import { JsonController, Get, Param } from 'routing-controllers';
 import { Inject, Container } from 'typedi';
+import { notFound } from 'boom';
 
 import { User } from './../models';
 import { UserRepository } from './../repositories';
@@ -12,5 +13,12 @@ export class UserController {
   @Get('/')
   public async fetchAll() {
     return await this.userService.findAll();
+  }
+
+  @Get('/:id')
+  public async fetchOne( @Param('id') id: number) {
+    const user = await this.userService.findOne(id);
+    if (!user) throw notFound();
+    return user;
   }
 }
