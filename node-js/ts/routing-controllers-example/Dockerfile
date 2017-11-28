@@ -10,5 +10,5 @@ RUN npm install
 
 EXPOSE 8000
 
-CMD ["docker/start.sh"]
+CMD ["./node_modules/.bin/ts-node", "./src/index.ts"]
 

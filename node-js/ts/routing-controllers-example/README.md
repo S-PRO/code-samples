@@ -7,3 +7,9 @@
 - [MySQL](https://www.mysql.com/)
 - [TypeORM](https://github.com/typeorm/typeorm)
 - [Docker](https://www.docker.com/)
+
+### Run: 
+
+```
+  $ docker-compose up api
+```

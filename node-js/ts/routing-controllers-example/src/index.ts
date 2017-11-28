@@ -20,7 +20,7 @@ import { CurrentUser } from './middlewares';
       cors: true,
       defaultErrorHandler: true,
       currentUserChecker: CurrentUser,
-      middlewares: [parser({ limit: '100mb' })],
+      middlewares: [parser({ limit: '10mb' })],
       controllers: [`${__dirname}/controllers/*.ts`],
     }).listen(8000);
   } catch (e) {
