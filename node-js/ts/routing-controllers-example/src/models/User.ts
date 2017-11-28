@@ -17,8 +17,9 @@ export class User {
   tasks?: Task[] = [];
 
   constructor(user: User = {} as User) {
-    const { first_name, last_name } = user;
+    const { first_name, last_name, tasks } = user;
     this.first_name = first_name;
     this.last_name = last_name;
+    this.tasks = tasks;
   }
 }

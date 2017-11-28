@@ -5,7 +5,7 @@ import { User } from './';
 export class Task {
 
   @PrimaryGeneratedColumn()
-  public id: number;
+  public id?: number;
 
   @Column()
   public title: string;
@@ -13,6 +13,13 @@ export class Task {
   @Column()
   public description: string;
 
-  @ManyToOne(type => User, user => user.tasks)
-  user: User;
+  @ManyToOne(type => User, user => user.tasks, { nullable: false })
+  public user?: User;
+
+  public constructor(task: Task = {} as Task) {
+    const { title, description, user } = task;
+    this.title = title;
+    this.description = description;
+    this.user = user;
+  }
 }

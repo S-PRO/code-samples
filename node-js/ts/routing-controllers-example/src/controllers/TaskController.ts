@@ -1,19 +1,27 @@
-import { JsonController, Get, Param, CurrentUser } from 'routing-controllers';
-import { notFound } from 'boom';
+import { JsonController, Get, Param, CurrentUser, Post, Body } from 'routing-controllers';
 
-import { User } from './../models';
-import { UserRepository, TaskRepository } from './../repositories';
+import { User, Task } from './../models';
+import { UserService, TaskService } from './../services';
+import { TaskRequest } from './../requests';
 
 @JsonController('/user/:id/task')
 export class UserController {
 
   constructor(
-    private readonly userRepository: UserRepository,
-    private readonly taskRepository: TaskRepository
+    private readonly userService: UserService,
+    private readonly taskService: TaskService
   ) { }
 
   @Get('/')
-  fetchAll( @CurrentUser({ required: true }) user: User) {
-    return this.taskRepository.findAll(user);
+  public fetchAll( @CurrentUser({ required: true }) user: User) {
+    return this.taskService.findAll(user);
+  }
+
+  @Post('/')
+  public create(
+    @CurrentUser({ required: true }) user: User,
+    @Body({ required: true }) taskRequest: TaskRequest
+    ) {
+    return this.taskService.create(new Task({ ...taskRequest, user }));
   }
 }

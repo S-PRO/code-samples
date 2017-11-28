@@ -5,7 +5,7 @@ import { OrmRepository } from 'typeorm-typedi-extensions';
 import { User } from './../models';
 
 @Service()
-export class UserRepository {
+export class UserService {
 
   @OrmRepository(User)
   private readonly repository: Repository<User>;

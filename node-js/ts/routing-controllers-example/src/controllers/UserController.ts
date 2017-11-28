@@ -1,17 +1,17 @@
 import { JsonController, Get, Post, Param, CurrentUser, Body } from 'routing-controllers';
 
 import { User } from './../models';
-import { UserRepository } from './../repositories';
+import { UserService } from './../services';
 import { UserRequest } from './../requests/index';
 
 @JsonController('/user')
 export class UserController {
 
-  constructor(private readonly userRepository: UserRepository) { }
+  constructor(private readonly userService: UserService) { }
 
   @Get('/')
   public async fetchAll() {
-    return await this.userRepository.findAll();
+    return await this.userService.findAll();
   }
 
   @Get('/:id')
@@ -21,6 +21,6 @@ export class UserController {
 
   @Post('/')
   public async create( @Body({ required: true }) userRequest: UserRequest) {
-    return this.userRepository.create(new User(userRequest));
+    return this.userService.create(new User(userRequest));
   }
 }
