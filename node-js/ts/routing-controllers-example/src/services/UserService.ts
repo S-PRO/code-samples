@@ -2,7 +2,7 @@ import { Service } from 'typedi';
 import { Repository } from 'typeorm';
 import { OrmRepository } from 'typeorm-typedi-extensions';
 
-import { User } from './../models';
+import { User, Task } from './../models';
 
 @Service()
 export class UserService {
@@ -11,14 +11,19 @@ export class UserService {
   private readonly repository: Repository<User>;
 
   public findAll(): Promise<User[]> {
-    return this.repository.find();
+    return this.repository.find({ relations: ['tasks'] });
   }
 
   public findOne(id: number): Promise<User | undefined> {
-    return this.repository.findOneById(id);
+    return this.repository.findOneById(id, { relations: ['tasks'] });
   }
 
   public create(user: User): Promise<User> {
     return this.repository.save(user);
   }
+
+  public async update(user: User): Promise<User> {
+    return this.repository.save(user);
+  }
+
 }

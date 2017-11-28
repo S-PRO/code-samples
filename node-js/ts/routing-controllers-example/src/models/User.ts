@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
 import { Task } from './';
 
 @Entity()
@@ -14,6 +14,7 @@ export class User {
   public last_name?: string;
 
   @OneToMany(type => Task, task => task.user)
+  @JoinColumn()
   tasks?: Task[] = [];
 
   constructor(user: User = {} as User) {
@@ -21,5 +22,10 @@ export class User {
     this.first_name = first_name;
     this.last_name = last_name;
     this.tasks = tasks;
+  }
+
+  public update(data: User = {} as User): void {
+    this.first_name = data.first_name;
+    this.last_name = data.last_name;
   }
 }
