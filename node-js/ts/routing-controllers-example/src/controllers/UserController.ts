@@ -1,4 +1,4 @@
-import { JsonController, Get, Param } from 'routing-controllers';
+import { JsonController, Get, Post, Param, CurrentUser } from 'routing-controllers';
 import { Inject, Container } from 'typedi';
 import { notFound } from 'boom';
 
@@ -16,9 +16,12 @@ export class UserController {
   }
 
   @Get('/:id')
-  public async fetchOne( @Param('id') id: number) {
-    const user = await this.userService.findOne(id);
-    if (!user) throw notFound();
+  public async fetchOne( @CurrentUser({ required: true }) user: User) {
     return user;
+  }
+
+  @Post('/')
+  public async create() {
+
   }
 }

@@ -4,7 +4,8 @@ import { createConnection, useContainer as ormUseContainer } from 'typeorm';
 import * as parser from 'body-parser';
 import { Container } from 'typedi';
 
-import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from './config';
+import { DataProvider } from './utils';
+import { CurrentUser } from './middlewares';
 
 (async function start() {
   try {
@@ -12,22 +13,13 @@ import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from './config';
     routingUseContainer(Container);
     ormUseContainer(Container);
 
-    const conn = await createConnection({
-      entities: [`${__dirname}/models/*.ts`],
-      synchronize: true,
-      type: 'mysql',
-      host: DB_HOST,
-      port: +DB_PORT,
-      username: DB_USER,
-      password: DB_PASSWORD,
-      database: DB_NAME,
-      logging: true,
-    });
+    await DataProvider.connect([`${__dirname}/models/*.ts`]);
 
-    await createExpressServer({
+    createExpressServer({
       routePrefix: '/api',
       cors: true,
       defaultErrorHandler: true,
+      currentUserChecker: CurrentUser,
       middlewares: [parser({ limit: '100mb' })],
       controllers: [`${__dirname}/controllers/*.ts`],
     }).listen(8000);
