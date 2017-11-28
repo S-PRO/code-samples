@@ -14,5 +14,7 @@ export class TaskRepository {
   @OrmRepository(Task)
   private readonly taskORMRepository: Repository<Task>;
 
-
+  findAll(user: User): Promise<Task[]> {
+    return this.taskORMRepository.find({ where: { user } });
+  }
 }

@@ -17,4 +17,8 @@ export class UserRepository {
   public findOne(id: number): Promise<User | undefined> {
     return this.repository.findOneById(id);
   }
+
+  public create(user: User): Promise<User> {
+    return this.repository.save(user);
+  }
 }

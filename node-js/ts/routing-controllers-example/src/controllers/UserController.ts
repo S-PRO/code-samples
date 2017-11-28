@@ -1,18 +1,17 @@
-import { JsonController, Get, Post, Param, CurrentUser } from 'routing-controllers';
-import { Inject, Container } from 'typedi';
-import { notFound } from 'boom';
+import { JsonController, Get, Post, Param, CurrentUser, Body } from 'routing-controllers';
 
 import { User } from './../models';
 import { UserRepository } from './../repositories';
+import { UserRequest } from './../requests/index';
 
 @JsonController('/user')
 export class UserController {
 
-  constructor(private readonly userService: UserRepository) { }
+  constructor(private readonly userRepository: UserRepository) { }
 
   @Get('/')
   public async fetchAll() {
-    return await this.userService.findAll();
+    return await this.userRepository.findAll();
   }
 
   @Get('/:id')
@@ -21,7 +20,7 @@ export class UserController {
   }
 
   @Post('/')
-  public async create() {
-
+  public async create( @Body({ required: true }) userRequest: UserRequest) {
+    return this.userRepository.create(new User(userRequest));
   }
 }
