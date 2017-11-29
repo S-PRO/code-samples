@@ -1,4 +1,14 @@
-import { JsonController, Get, Post, Param, CurrentUser, Body, Put } from 'routing-controllers';
+import {
+  JsonController,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  CurrentUser,
+  Body,
+  HttpCode,
+} from 'routing-controllers';
 
 import { User } from './../models';
 import { UserService } from './../services';
@@ -31,5 +41,12 @@ export class UserController {
     ) {
     user.update(<User>userRequest);
     return this.userService.update(user);
+  }
+
+  @Delete('/:id')
+  @HttpCode(204)
+  public async remove( @CurrentUser({ required: true }) user: User) {
+    await this.userService.remove(user);
+    return true;
   }
 }

@@ -13,7 +13,11 @@ export class User {
   @Column()
   public last_name?: string;
 
-  @OneToMany(type => Task, task => task.user)
+  @OneToMany(
+    type => Task, 
+    task => task.user, 
+    { cascadeUpdate: true, cascadeInsert: true }
+  )
   @JoinColumn()
   tasks?: Task[] = [];
 

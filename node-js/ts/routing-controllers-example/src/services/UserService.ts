@@ -26,4 +26,8 @@ export class UserService {
     return this.repository.save(user);
   }
 
+  public remove(user: User): Promise<void> {
+    return this.repository.delete({ id: user.id });
+  }
+
 }
