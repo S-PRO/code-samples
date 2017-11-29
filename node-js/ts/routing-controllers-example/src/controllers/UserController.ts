@@ -2,7 +2,7 @@ import { JsonController, Get, Post, Param, CurrentUser, Body, Put } from 'routin
 
 import { User } from './../models';
 import { UserService } from './../services';
-import { UserRequest } from './../requests/index';
+import { UserRequest } from './../requests';
 
 @JsonController('/user')
 export class UserController {

@@ -2,8 +2,7 @@ import { Service } from 'typedi';
 import { Repository } from 'typeorm';
 import { OrmRepository } from 'typeorm-typedi-extensions';
 
-import { User } from './../models';
-import { Task } from './../models';
+import { User, Task } from './../models';
 
 @Service()
 export class TaskService {

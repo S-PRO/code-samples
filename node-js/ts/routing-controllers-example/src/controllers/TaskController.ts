@@ -7,10 +7,7 @@ import { TaskRequest } from './../requests';
 @JsonController('/user/:id/task')
 export class UserController {
 
-  constructor(
-    private readonly userService: UserService,
-    private readonly taskService: TaskService
-  ) { }
+  constructor(private readonly taskService: TaskService) { }
 
   @Get('/')
   public fetchAll( @CurrentUser({ required: true }) user: User) {
