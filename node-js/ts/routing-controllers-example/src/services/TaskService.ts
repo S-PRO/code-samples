@@ -22,4 +22,14 @@ export class TaskService {
     await this.taskORMRepository.save(task);
     return task;
   }
+
+  public async removeAll(userId: number | undefined): Promise<boolean | void> {
+    if (!userId) return false;
+    
+    const tasks = await this.taskORMRepository
+      .createQueryBuilder()
+      .delete()
+      .where({ userId })
+      .execute();
+  }
 }
